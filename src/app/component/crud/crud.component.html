@@ -1,0 +1,28 @@
+<input type="button" value="ADD" (click)="showAddForm()">
+<br><br>
+<div style="width:45%;border:1px solid;padding:25px;float:left">
+  <table border="1" width="100%" *ngIf="departments && departments.length > 0">
+    <tr>
+      <th>Name</th>
+      <th>Action</th>
+    </tr>
+    <tr *ngFor="let dept of departments">
+      <td>{{dept.name}}</td>
+      <td>
+        <input type="button" value="Delete" (click)="deleteRow(dept.id)">
+        <input type="button" value="Edit" (click)="editRow(dept)">      
+      </td>
+    </tr>
+  </table>
+</div>
+<div style="width:45%;border:1px solid blue;padding:25px;float:right">
+  <div *ngIf="showAddPanel">
+
+    <label for="DeptName"> </label>
+    <input type="text" name="DeptName" [(ngModel)]="deptName">
+    <br><br>
+    <input type="button" *ngIf="deptId==0" value="Save Department" (click)="AddDepartment(deptName)"><br><br>
+    <input type="button"*ngIf="deptId > 0" value="update Department" (click)="updateDepartment(deptName)"><br><br>
+    <input type="button" value="Cancel" (click)="AddForm()">
+  </div>
+</div>
